@@ -5,18 +5,33 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Defend from CandyLand - Demo</title>
   </head>
-  <body style="text-align: center">
-    <canvas id="unity-canvas" width=732 height=412 style="width: 732px; height: 412px; background: url('Build/WebGL Build.jpg') center / cover"></canvas>
-    <script src="Build/WebGL Build.loader.js"></script>
+  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
+    <canvas id="unity-canvas" width=732 height=412 tabindex="-1" style="width: 732px; height: 412px; background: url('Build/Defend from Candyland! Web Build.jpg') center / cover"></canvas>
+    <script src="Build/Defend from Candyland! Web Build.loader.js"></script>
     <script>
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+
+        var canvas = document.querySelector("#unity-canvas");
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.position = "fixed";
+
+        document.body.style.textAlign = "left";
+      }
+
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/WebGL Build.data",
-        frameworkUrl: "Build/WebGL Build.framework.js",
-        codeUrl: "Build/WebGL Build.wasm",
+        dataUrl: "Build/Defend from Candyland! Web Build.data",
+        frameworkUrl: "Build/Defend from Candyland! Web Build.framework.js",
+        codeUrl: "Build/Defend from Candyland! Web Build.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "MI Pixel",
         productName: "Defend from CandyLand - Demo",
-        productVersion: "1.0.0",
+        productVersion: "1.1.0",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
